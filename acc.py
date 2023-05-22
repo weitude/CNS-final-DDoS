@@ -1,5 +1,6 @@
 import csv
 
+INF = 1 << 64
 filename = "./data/7.csv"
 
 
@@ -56,6 +57,13 @@ def compute_distance(packet, cluster):
             """ seems no use """
     return dis
 
-for i in packet_set:
-    print(i, cluster_set)
-    print(compute_distance(i, cluster_set[0]))
+for packet in packet_set:
+    selected_cluster = -1
+    dis_min = INF
+    for idx, cluster in enumerate(cluster_set):
+        dis = compute_distance(packet, cluster)
+        if dis < dis_min:
+            dis_min = dis
+            selected_cluster = idx
+    if dis_min > 0:
+        """update cluster"""

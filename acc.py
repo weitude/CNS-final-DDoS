@@ -73,14 +73,21 @@ def update_cluster(packet, cluster):
             """ seems no use """
 
 
+packet_queue_set = [[] for i in range(4)]
 for packet in packet_set:
     selected_cluster = -1
+    which = -1
     dis_min = INF
     for idx, cluster in enumerate(cluster_set):
         dis = compute_distance(packet, cluster)
         if dis < dis_min:
             dis_min = dis
             selected_cluster = cluster
+            which = idx
     if dis_min > 0:
         update_cluster(packet, selected_cluster)
-    print(cluster_set)
+    
+    packet_queue_set[which].append(packet)
+
+for i in range(4):
+    print(len(packet_queue_set[i]))

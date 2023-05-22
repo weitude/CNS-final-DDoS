@@ -22,9 +22,9 @@ dst_min_idx = 2
 dst_max_idx = 3
 
 cluster_set = [["10.0.0.2", "10.0.0.2", "10.0.0.2", "10.0.0.2"],
-           ["10.0.0.4", "10.0.0.4", "10.0.0.4", "10.0.0.4"],
-           ["10.0.0.6", "10.0.0.6", "10.0.0.6", "10.0.0.6"],
-           ["10.0.0.8", "10.0.0.8", "10.0.0.8", "10.0.0.8"]]
+               ["10.0.0.4", "10.0.0.4", "10.0.0.4", "10.0.0.4"],
+               ["10.0.0.6", "10.0.0.6", "10.0.0.6", "10.0.0.6"],
+               ["10.0.0.8", "10.0.0.8", "10.0.0.8", "10.0.0.8"]]
 
 def ip_dis(a, b):
     a = a.split('.')
@@ -89,5 +89,13 @@ for packet in packet_set:
     
     packet_queue_set[which].append(packet)
 
+length = []
 for i in range(4):
-    print(len(packet_queue_set[i]))
+    length.append(len(packet_queue_set[i]))
+    print(length[i])
+
+while True:
+    for i in range(4):
+        if length[i] > 0:
+            print(packet_queue_set[i].pop(0))
+            length[i] -= 1

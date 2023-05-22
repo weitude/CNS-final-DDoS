@@ -44,18 +44,34 @@ def ip_compare(a, b):
 
 def compute_distance(packet, cluster):
     dis = 0
-    for j, i in enumerate(packet):
+    for idx, feature in enumerate(packet):
         feature_dis = 0
-        if j == 2 or j == 3: #source ip or destination ip
-            if ip_compare(cluster[src_min_idx], i):
-                feature_dis = ip_dis(cluster[src_min_idx], i)    
-            elif ip_compare(i, cluster[src_max_idx]):
-                feature_dis = ip_dis(i, cluster[src_max_idx])
+        if idx == 2 or idx == 3: #source ip or destination ip
+            if ip_compare(cluster[src_min_idx], feature):
+                feature_dis = ip_dis(cluster[src_min_idx], feature)    
+            if ip_compare(feature, cluster[src_max_idx]):
+                feature_dis = ip_dis(feature, cluster[src_max_idx])
 
             dis += feature_dis
         else:
             """ seems no use """
     return dis
+
+def update_cluster(packet, cluster):
+    for idx, feature in enumerate(packet):
+        if idx == 2: #source ip
+            if ip_compare(cluster[src_min_idx], feature):
+                cluster[src_min_idx] = feature
+            if ip_compare(feature, cluster[src_max_idx]):
+                cluster[src_max_idx] = feature
+        elif idx == 3: #destination ip
+            if ip_compare(cluster[dst_min_idx], feature):
+                cluster[dst_min_idx] = feature
+            if ip_compare(feature, cluster[dst_max_idx]):
+                cluster[dst_max_idx] = feature
+        else:
+            """ seems no use """
+
 
 for packet in packet_set:
     selected_cluster = -1
@@ -64,6 +80,7 @@ for packet in packet_set:
         dis = compute_distance(packet, cluster)
         if dis < dis_min:
             dis_min = dis
-            selected_cluster = idx
+            selected_cluster = cluster
     if dis_min > 0:
-        """update cluster"""
+        update_cluster(packet, selected_cluster)
+    print(cluster_set)

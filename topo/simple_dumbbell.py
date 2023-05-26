@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-Simple dumbell topology.
+Simple dumbbell topology.
 """
 
 import sys

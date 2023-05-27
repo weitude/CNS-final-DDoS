@@ -1,4 +1,6 @@
 import csv
+import pandas as pd
+import os
 
 INF = 1 << 64
 filename = "./data/7.csv"
@@ -10,8 +12,9 @@ with open(filename) as csvfile:
     for i in rows:
         packet_set.append(i)
 
-packet_set.sort(key=lambda packet_set:packet_set[1])
-packet_set = packet_set[:-1]
+packet_set = packet_set[1:]
+packet_set.sort(key=lambda packet_set:float(packet_set[1]))
+rate = float(packet_set[-1][1]) / len(packet_set)
 
 """
 cluster : [src_min, src_max, dst_min, dst_max]
@@ -90,12 +93,29 @@ for packet in packet_set:
     packet_queue_set[which].append(packet)
 
 length = []
+print("length of each cluster")
 for i in range(4):
     length.append(len(packet_queue_set[i]))
-    print(length[i])
+    print(f"{i}:", length[i])
 
+result = []
+current_time = 0
+print("rate:", rate)
 while True:
+    empty = 0
+    current_time += rate
     for i in range(4):
         if length[i] > 0:
-            print(packet_queue_set[i].pop(0))
+            out = packet_queue_set[i].pop(0)
+            out[1] = str(round(current_time, 6))
+            result.append(out[1:])
             length[i] -= 1
+        else:
+            empty += 1
+
+    if empty == 4:
+        break
+
+df = pd.DataFrame(result)
+df.to_csv("after_acc.csv")
+os.system("python3 graph.py")

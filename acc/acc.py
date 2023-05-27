@@ -3,7 +3,7 @@ import pandas as pd
 import os
 
 INF = 1 << 64
-filename = "./data/7.csv"
+filename = "../data/7.csv"
 
 
 packet_set = []

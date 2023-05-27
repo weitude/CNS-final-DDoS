@@ -107,7 +107,7 @@ while True:
     for i in range(4):
         if length[i] > 0:
             out = packet_queue_set[i].pop(0)
-            out[1] = str(round(current_time, 6))
+            out[1] = str(round(current_time + rate / 4 * i, 6))
             result.append(out[1:])
             length[i] -= 1
         else:

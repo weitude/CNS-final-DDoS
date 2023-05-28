@@ -14,7 +14,7 @@ def format_string(input_string):
     Length = components[6]
     Info = ' '.join(components[7:])
     if Protocol != 'UDP':
-        return ""
+        return ''
 
     output_string = f'"{No}","{Time}","{Source}","{Destination}","{Protocol}","{Length}","{Info}"\n'
     return output_string
@@ -34,6 +34,7 @@ def generate_csv(input_file):
         f.write('"No.","Time","Source","Destination","Protocol","Length","Info"\n')
         for line in Lines:
             f.write(format_string(line))
+        f.truncate()
 
     print(f"CSV file '{output_file}' created.")
 

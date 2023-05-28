@@ -1,9 +1,0 @@
-# vscode files
-.vscode/
-
-# git files
-.gitignore
-
-# Python files
-__pycache__/
-

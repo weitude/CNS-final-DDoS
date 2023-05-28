@@ -1,4 +1,21 @@
-# CNS fianl
+# CNS Final
+
+## docker-mininet
+
+### Docker Build Command
+
+```bash
+cd docker-mininet
+docker build -t mininet .
+```
+
+### Docker Run Command
+
+```bash
+docker run -it --rm --privileged -e DISPLAY \
+           -P -v /lib/modules:/lib/modules \
+           mininet
+```
 
 ## Generate UDP traffic
 
@@ -52,4 +69,14 @@ sudo -E wireshark &
 Sample captured `pcapng` file is at `test_data/sample_pulse.pcapng`
 
 - Total: 45,838 packets
+
+### Test Case 7: Random Select Target
+
+> This version generates UDP stream w/o backgroud traffic.
+
+All botnet hosts random select target host.
+
+```bash
+sudo python topo/test_7.py -f send_udp/send_7.py
+```
 

@@ -72,11 +72,20 @@ Sample captured `pcapng` file is at `test_data/sample_pulse.pcapng`
 
 ### Test Case 7: Random Select Target
 
-> This version generates UDP stream w/o backgroud traffic.
+> This version generates UDP stream w/o background traffic.
 
-All botnet hosts random select target host.
+All botnet hosts randomly select target host.
 
 ```bash
-sudo python topo/test_7.py -f send_udp/send_7.py
+sudo python gen_test/test_7.py -f gen_test/utils/send_7.py
+```
+
+### Test Case 8: Random Select Target w/ Background Traffic
+
+A fraction of hosts acting as a botnet randomly select targets and other hosts as benign hosts sending background traffic.
+
+```bash
+sudo python gen_test/test_8.py -m gen_test/utils/send_7.py \
+  -b gen_test/utils/benign_udp.py
 ```
 

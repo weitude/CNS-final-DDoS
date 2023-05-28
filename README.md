@@ -70,3 +70,13 @@ Sample captured `pcapng` file is at `test_data/sample_pulse.pcapng`
 
 - Total: 45,838 packets
 
+### Test Case 7: Random Select Target
+
+> This version generates UDP stream w/o backgroud traffic.
+
+All botnet hosts random select target host.
+
+```bash
+sudo python topo/test_7.py -f send_udp/send_7.py
+```
+

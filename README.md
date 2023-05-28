@@ -7,7 +7,7 @@
 Randomly choose 3 hosts in the botnet to send UDP packets to benign hosts.
 
 ```bash
-sudo python topo/simple_send.py -f send_udp.py
+sudo python topo/simple_send.py -f send_udp/send_udp.py
 ```
 
 Start Wireshark to capture UDP packets:
@@ -33,7 +33,7 @@ Sample captured `pcapng` file is at `test-data`
 All botnet hosts send UDP packets to `10.0.0.11`.
 
 ```bash
-sudo python topo/pulse_send.py -f send-udp/pulse_udp.py
+sudo python topo/pulse_send.py -f send_udp/pulse_udp.py
 ```
 
 Start Wireshark to capture UDP packets:

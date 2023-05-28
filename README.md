@@ -26,7 +26,7 @@ Host: 10.0.0.2 Target: 10.0.0.16
 Host: 10.0.0.10 Target: 10.0.0.18
 ```
 
-Sample captured `pcapng` file is at `test-data`
+Sample captured `pcapng` file is at `test_data`
 
 ### Case 1: Target Same Host
 
@@ -49,7 +49,7 @@ sudo -E wireshark &
 *** Start sending UDP packets? [y/n]: y
 ```
 
-Sample captured `pcapng` file is at `test-data/sample_pulse.pcapng`
+Sample captured `pcapng` file is at `test_data/sample_pulse.pcapng`
 
 - Total: 45,838 packets
 

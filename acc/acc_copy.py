@@ -172,6 +172,6 @@ while True:
     if empty == 4:
         break
 
-#df = pd.DataFrame(result)
-#df.to_csv(f"after_acc_{testcase}.csv")
+df = pd.DataFrame(result)
+df.to_csv(f"after_test_8.csv")
 #os.system(f"python3 graph.py {testcase}")

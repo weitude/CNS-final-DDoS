@@ -1,9 +1,7 @@
 import csv
 import matplotlib.pyplot as plt
-import sys
 
-which = sys.argv[1]
-filename = f"./after_acc_{which}.csv"
+filename = "./after_acc.csv"
 
 packet_set = []
 with open(filename) as csvfile:
@@ -29,4 +27,4 @@ for i in packet_set:
         current_time += interval
 
 plt.plot(timestamp, number)
-plt.savefig(f"after_acc_{which}.jpg")
+plt.savefig("after_acc.jpg")

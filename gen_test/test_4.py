@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-Simple dumbbell topology.
+Test Case 8 Script.
 """
 
 import sys

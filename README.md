@@ -1,8 +1,25 @@
 # CNS Final
 
+## docker-mininet
+
+### Docker Build Command
+
+```bash
+cd docker-mininet
+docker build -t mininet .
+```
+
+### Docker Run Command
+
+```bash
+docker run -it --rm --privileged -e DISPLAY \
+           -P -v /lib/modules:/lib/modules \
+           mininet
+```
+
 ## Generate UDP traffic
 
-### Sample Usage
+### Random Choose 3 Hosts
 
 Randomly choose 3 hosts in the botnet to send UDP packets to benign hosts.
 
@@ -63,3 +80,8 @@ sudo python gen_test/test_8.py -m gen_test/utils/send_7.py \
   -b gen_test/utils/benign_udp.py
 ```
 
+### Test Case 9
+
+```bash
+sudo python gen_test/test_9.py -m gen_test/utils/send_7.py -b gen_test/utils/benign_udp.py
+```

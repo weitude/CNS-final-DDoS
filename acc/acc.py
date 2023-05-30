@@ -3,8 +3,9 @@ import pandas as pd
 import os
 
 INF = 1 << 64
-filename = "../data/7.csv"
-
+testcase  = 8
+#filename = f"../data/{testcase}.csv"
+filename = "../test-data/test.csv"
 
 packet_set = []
 with open(filename) as csvfile:
@@ -24,10 +25,10 @@ src_max_idx = 1
 dst_min_idx = 2
 dst_max_idx = 3
 
-cluster_set = [["10.0.0.2", "10.0.0.2", "10.0.0.2", "10.0.0.2"],
-               ["10.0.0.4", "10.0.0.4", "10.0.0.4", "10.0.0.4"],
-               ["10.0.0.6", "10.0.0.6", "10.0.0.6", "10.0.0.6"],
-               ["10.0.0.8", "10.0.0.8", "10.0.0.8", "10.0.0.8"]]
+cluster_set = [["10.0.0.3", "10.0.0.3", "10.0.0.13", "10.0.0.13"],
+               ["10.0.0.3", "10.0.0.3", "10.0.0.17", "10.0.0.17"],
+               ["10.0.0.7", "10.0.0.7", "10.0.0.13", "10.0.0.13"],
+               ["10.0.0.7", "10.0.0.7", "10.0.0.17", "10.0.0.17"]]
 
 def ip_dis(a, b):
     a = a.split('.')
@@ -38,9 +39,8 @@ def ip_dis(a, b):
 def ip_compare(a, b):
     a = a.split('.')
     b = b.split('.')
-    for i in range(4):
-        if int(a[i]) > int(b[i]):
-            return True
+    if int(a[3]) >= int(b[3]):
+        return True
 
     return False
 
@@ -49,11 +49,16 @@ def compute_distance(packet, cluster):
     dis = 0
     for idx, feature in enumerate(packet):
         feature_dis = 0
-        if idx == 2 or idx == 3: #source ip or destination ip
+        if idx == 2 : #source ip or destination ip
             if ip_compare(cluster[src_min_idx], feature):
                 feature_dis = ip_dis(cluster[src_min_idx], feature)    
             if ip_compare(feature, cluster[src_max_idx]):
                 feature_dis = ip_dis(feature, cluster[src_max_idx])
+        elif idx == 3:
+            if ip_compare(cluster[dst_min_idx], feature):
+                feature_dis = ip_dis(cluster[dst_min_idx], feature)    
+            if ip_compare(feature, cluster[dst_max_idx]):
+                feature_dis = ip_dis(feature, cluster[dst_max_idx])
 
             dis += feature_dis
         else:
@@ -78,6 +83,8 @@ def update_cluster(packet, cluster):
 
 packet_queue_set = [[] for i in range(4)]
 for packet in packet_set:
+    if packet[4] != "UDP":
+        continue
     selected_cluster = -1
     which = -1
     dis_min = INF
@@ -117,5 +124,5 @@ while True:
         break
 
 df = pd.DataFrame(result)
-df.to_csv("after_acc.csv")
-os.system("python3 graph.py")
+df.to_csv(f"after_acc_{testcase}.csv")
+os.system(f"python3 graph.py {testcase}")

@@ -1,0 +1,11 @@
+# vscode files
+.vscode/
+
+# git files
+.gitignore
+
+# Python files
+__pycache__/
+
+.DS_Store
+.idea

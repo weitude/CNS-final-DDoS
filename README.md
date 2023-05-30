@@ -45,30 +45,21 @@ Host: 10.0.0.10 Target: 10.0.0.18
 
 Sample captured `pcapng` file is at `test_data`
 
-### Case 1: Target Same Host
+### Case 1 & 4: Target Same Host
 
 All botnet hosts send UDP packets to `10.0.0.11`.
 
-```bash
-sudo python topo/pulse_send.py -f send_udp/pulse_udp.py
-```
-
-Start Wireshark to capture UDP packets:
+#### Case 1
 
 ```bash
-sudo -E wireshark &
+sudo python gen_test/test_1.py -f gen_test/utils/pulse_udp.py
 ```
 
-- Choose `s1-eth1` interface
+#### Case 4
 
 ```bash
-# Type y/Y to start sending UDP packets
-*** Start sending UDP packets? [y/n]: y
+sudo python gen_test/test_4.py -f gen_test/utils/pulse_udp.py
 ```
-
-Sample captured `pcapng` file is at `test_data/sample_pulse.pcapng`
-
-- Total: 45,838 packets
 
 ### Test Case 7: Random Select Target
 

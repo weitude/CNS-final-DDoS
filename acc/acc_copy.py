@@ -1,11 +1,13 @@
 import csv
 import pandas as pd
 import os
+import matplotlib.pyplot as plt
 
 INF = 1 << 64
-testcase  = 8
+testcase  = 6
 #filename = f"../data/{testcase}.csv"
-filename = "../test-data/test.csv"
+#filename = "../test-data/test.csv"
+filename = "../test_data/csv/test_8.csv"
 
 packet_set = []
 with open(filename) as csvfile:
@@ -51,18 +53,17 @@ def compute_distance(packet, cluster):
         feature_dis = 0
         if idx == 2 : #source ip or destination ip
             if ip_compare(cluster[src_min_idx], feature):
-                feature_dis = ip_dis(cluster[src_min_idx], feature)    
+                feature_dis += ip_dis(cluster[src_min_idx], feature)    
             if ip_compare(feature, cluster[src_max_idx]):
-                feature_dis = ip_dis(feature, cluster[src_max_idx])
+                feature_dis += ip_dis(feature, cluster[src_max_idx])
         elif idx == 3:
             if ip_compare(cluster[dst_min_idx], feature):
-                feature_dis = ip_dis(cluster[dst_min_idx], feature)    
+                feature_dis += ip_dis(cluster[dst_min_idx], feature)    
             if ip_compare(feature, cluster[dst_max_idx]):
-                feature_dis = ip_dis(feature, cluster[dst_max_idx])
-
-            dis += feature_dis
+                feature_dis += ip_dis(feature, cluster[dst_max_idx])
         else:
             """ seems no use """
+        dis += feature_dis
     return dis
 
 def update_cluster(packet, cluster):
@@ -88,16 +89,64 @@ for packet in packet_set:
     selected_cluster = -1
     which = -1
     dis_min = INF
+    #print(packet)
     for idx, cluster in enumerate(cluster_set):
         dis = compute_distance(packet, cluster)
+        #print('idx, dis ',idx, dis)
+        #print(cluster)
         if dis < dis_min:
             dis_min = dis
             selected_cluster = cluster
             which = idx
+    #print('dis_min',dis_min)
     if dis_min > 0:
         update_cluster(packet, selected_cluster)
+    print(cluster_set)
     
     packet_queue_set[which].append(packet)
+
+""" draw cluster graph """
+#print(packet_queue_set[2])
+for i in range(4):
+    df = pd.DataFrame(packet_queue_set[i])
+    df.to_csv(f"cluster{i}.csv")
+cnt = dict()
+for i in range(1,11):
+    for j in range(11,21):
+        cnt[(i,j)] = [0,-1]
+
+for i in range(4):
+    for one_packet in packet_queue_set[i]:
+        s = int(one_packet[2].split('.')[3])
+        d = int(one_packet[3].split('.')[3])
+        cnt[(s,d)][0] += 1
+        #if cnt[(s,d)][1]==-1:
+        cnt[(s,d)][1] = i
+    #print(cnt)
+
+src = []
+des = []
+cnt_packet = []
+color_list = ['red', 'yellow', 'green', 'blue']
+colors = []
+for i in range(1,11):
+    for j in range(11,21):
+        if cnt[(i,j)][0]>0:
+            src.append(i)
+            des.append(j)
+            cnt_packet.append(cnt[(i,j)][0])
+            colors.append(color_list[cnt[(i,j)][1]])
+
+plt.figure(figsize=(10, 15), dpi=100)
+plt.xticks(range(1, 11, 1))
+plt.yticks(range(11, 21, 1))
+plt.scatter(src, des, c=colors, s=cnt_packet, label='packet')
+plt.xlabel("source ip", fontdict={'size': 16})
+plt.ylabel("destination ip", fontdict={'size': 16})
+plt.title("Clusters", fontdict={'size': 20})
+plt.savefig('plot.png')
+
+""" draw cluster graph """
 
 length = []
 print("length of each cluster")
@@ -123,6 +172,6 @@ while True:
     if empty == 4:
         break
 
-df = pd.DataFrame(result)
-df.to_csv(f"after_acc_{testcase}.csv")
-os.system(f"python3 graph.py {testcase}")
+#df = pd.DataFrame(result)
+#df.to_csv(f"after_acc_{testcase}.csv")
+#os.system(f"python3 graph.py {testcase}")

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
 Test Case 7 Script
@@ -49,7 +49,7 @@ def run(size, rounds, file):
         if res.upper() == "Y":
             random.shuffle(bots)
             for i, host in enumerate(bots):
-                host.popen(f"python {file} -f {tmp.name} -s {i}")
+                host.popen(f"python3 {file} -f {tmp.name} -s {i}")
     finally:
         tmp.close()
         CLI(net)

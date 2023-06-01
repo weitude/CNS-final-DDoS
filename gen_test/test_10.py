@@ -11,6 +11,7 @@ import sys
 import tempfile
 from argparse import ArgumentParser, Namespace
 from os import path
+from time import time, sleep
 
 from mininet.cli import CLI
 from mininet.log import lg
@@ -44,11 +45,14 @@ def run(size, rounds, file):
         pickle.dump(order, open(tmp.name, "wb"))
         res = input("*** Start sending UDP packets? [y/n]: ")
         if res.upper() == "Y":
-            random.shuffle(bots)
-            print(bots)
-            for i, host in enumerate(bots[:7]):
-                print(i)
-                host.popen(f"python3 {file} -f {tmp.name} -s {i}")
+            for round in range(5):
+                start = time()
+                random.shuffle(bots)
+                print(f"### Round {round + 1}")
+                for i, host in enumerate(bots[:7]):
+                    print(host)
+                    host.popen(f"python3 {file} -f {tmp.name} -s {i}")
+                sleep(4 - time() + start)
     finally:
         tmp.close()
         CLI(net)

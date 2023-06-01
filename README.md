@@ -95,5 +95,5 @@ sudo python gen_test/test_9.py -m gen_test/utils/send_7.py -b gen_test/utils/ben
 ### Test Case 10
 
 ```bash
-sudo python gen_test/test_10.py -f gen_test/utils/send_7.py
+sudo python gen_test/test_10.py -f gen_test/utils/send_10.py
 ```

@@ -5,10 +5,10 @@ import matplotlib.pyplot as plt
 
 INF = 1 << 64
 
-testcase = "5-3"
+testcase = "1-3"
 os.system(f"mkdir {testcase}")
 result = []
-for part in range(183):
+for part in range(182):
     print(part)
     filename = f"./break_down_data/break_down_{testcase}_{part}.csv"
 

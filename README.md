@@ -36,17 +36,19 @@ sudo python topo/simple_send.py -f send_udp/send_udp.py
 
 Sample captured `pcapng` file is at `test_data`
 
-### Case 1 & 4: Target Same Host
+### Test Case 1: Target Same Host
 
 All botnet hosts send UDP packets to `10.0.0.11`.
-
-#### Case 1
 
 ```bash
 sudo python gen_test/test_1.py -f gen_test/utils/pulse_udp.py
 ```
 
-#### Case 4
+### Test Case 4: Two Target
+
+h<1..5> -> h<11> pusling
+
+h<6..10> -> h<20> pusling
 
 ```bash
 sudo python gen_test/test_4.py -f gen_test/utils/pulse_udp.py

@@ -4,9 +4,10 @@ import os
 import matplotlib.pyplot as plt
 
 INF = 1 << 64
-testcase = "7"
-os.system("mkdir images")
-for part in range(183):
+testcase = "7-1"
+os.system(f"mkdir {testcase}")
+result = []
+for part in range(182):
     print(part)
     filename = f"./break_down_data/break_down_{testcase}_{part}.csv"
 
@@ -156,22 +157,21 @@ for part in range(183):
     plt.xlabel("source ip", fontdict={'size': 16})
     plt.ylabel("destination ip", fontdict={'size': 16})
     plt.title("Clusters", fontdict={'size': 20})
-    plt.savefig(f'./images/plot_{part}.png')
+    plt.savefig(f'./{testcase}/plot_{part}.png')
     plt.cla()
     plt.close()
 
     """ draw cluster graph """
 
-    """
+    
     length = []
     #print("length of each cluster")
     for i in range(4):
         length.append(len(packet_queue_set[i]))
-    #    print(f"{i}:", length[i])
+        print(f"{i}:", length[i])
 
-    result = []
-    current_time = 0
-    #print("rate:", rate)
+    current_time = part * 0.1
+    print("rate:", rate)
     while True:
         empty = 0
         current_time += rate
@@ -186,4 +186,6 @@ for part in range(183):
 
         if empty == 4:
             break
-    """
+
+df = pd.DataFrame(result)
+df.to_csv(f"./{testcase}/after_acc_{testcase}.csv")

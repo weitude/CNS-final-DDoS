@@ -54,6 +54,18 @@ h<6..10> -> h<20> pusling
 sudo python gen_test/test_4.py -f gen_test/utils/pulse_udp.py
 ```
 
+### Test Case 5: Three Target
+
+h<1..3> -> h<11> pusling
+
+h<4..7> -> h<15> pusling
+
+h<8..10> -> h<20> pusling
+
+```bash
+sudo python gen_test/test_5.py -f gen_test/utils/pulse_udp.py
+```
+
 ### Test Case 7: Random Select Target
 
 > This version generates UDP stream w/o background traffic.

@@ -4,7 +4,7 @@ import os
 import matplotlib.pyplot as plt
 
 INF = 1 << 64
-testcase = "7-1"
+testcase = "7-3"
 os.system(f"mkdir {testcase}")
 result = []
 for part in range(182):

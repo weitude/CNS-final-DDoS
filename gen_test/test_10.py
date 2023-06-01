@@ -1,25 +1,22 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
-Test Case 7 Script
+Test Case 10 Script
 """
 
 import os
-import sys
-import random
 import pickle
+import random
+import sys
 import tempfile
-
-from mininet.net import Mininet
-from mininet.log import lg
-from mininet.util import pmonitor
-from mininet.cli import CLI
-
-from os import path
 from argparse import ArgumentParser, Namespace
+from os import path
+
+from mininet.cli import CLI
+from mininet.log import lg
+from mininet.net import Mininet
 
 from topology import DumbbellTopo
-from utils.utils import measure_latency
 
 flush = sys.stdout.flush
 
@@ -29,7 +26,7 @@ def run(size, rounds, file):
     Send UDP packets to random targets.
     """
     topo = DumbbellTopo(size)
-    net = Mininet( topo=topo, waitConnected=True )
+    net = Mininet(topo=topo, waitConnected=True)
     net.start()
     # print("*** Measuring link latency ...")
     # pdelay = measure_latency(net)
@@ -58,6 +55,7 @@ def run(size, rounds, file):
         os.unlink(tmp.name)
 
     net.stop()
+
 
 def main(args):
     lg.setLogLevel("info")
@@ -98,6 +96,7 @@ def parse_args() -> Namespace:
     args = parser.parse_args()
 
     return args
+
 
 if __name__ == "__main__":
     args = parse_args()

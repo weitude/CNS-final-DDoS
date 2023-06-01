@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
 Toy example.
@@ -32,7 +32,7 @@ def run(size, num, file):
         for host in random.sample(bots, num):
             tar = random.choice(tars)
             print(f"Host: {host.IP()} Target: {tar.IP()}")
-            host.popen(f"python {file} -t {tar.IP()}")
+            host.popen(f"python3 {file} -t {tar.IP()}")
 
     CLI(net)
     net.stop()

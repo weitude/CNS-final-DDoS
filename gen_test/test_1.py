@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
 Simple dumbbell topology.
@@ -34,7 +34,7 @@ def run(size, num, file):
 
     if res.upper() == "Y":
         for host in bots:
-            host.popen(f"python {file} -t {tar.IP()} -d {pdelay[host.name]['avg']}")
+            host.popen(f"python3 {file} -t {tar.IP()} -d {pdelay[host.name]['avg']}")
 
     CLI(net)
     net.stop()

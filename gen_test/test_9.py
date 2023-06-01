@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
 Test Case 9 Script.
@@ -53,9 +53,9 @@ def run(size, botnet_size, rounds, mscript, bscript):
         if res.upper() == "Y":
             dest = ",".join(tars)
             for host in nors:
-                host.popen(f"python {bscript} -d {dest}")
+                host.popen(f"python3 {bscript} -d {dest}")
             for i, host in enumerate(bots):
-                host.popen(f"python {mscript} -f {tmp.name} -s {i}")
+                host.popen(f"python3 {mscript} -f {tmp.name} -s {i}")
     finally:
         tmp.close()
         input("*** Press enter after capturing traffic [Enter]: ")

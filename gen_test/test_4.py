@@ -1,7 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
-Test Case 8 Script.
+Test Case 4 Script.
 """
 
 import sys
@@ -40,7 +40,7 @@ def run(size, num, file):
             else:
                 tar = tar2
             print(f"host: {host.IP()} target: {tar}")
-            host.popen(f"python {file} -t {tar} -d {pdelay[host.name]['avg']}")
+            host.popen(f"python3 {file} -t {tar} -d {pdelay[host.name]['avg']}")
 
     input("*** Press enter after capturing traffic [Enter]: ")
     net.stop()

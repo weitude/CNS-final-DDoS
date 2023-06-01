@@ -56,7 +56,8 @@ sudo python gen_test/test_7.py -f gen_test/utils/send_7.py
 
 ### Test Case 8: Random Select Target w/ Background Traffic
 
-A fraction of hosts acting as a botnet randomly select targets and other hosts as benign hosts sending background traffic.
+A fraction of hosts acting as a botnet randomly select targets and other hosts as benign hosts sending background
+traffic.
 
 ```bash
 sudo python gen_test/test_8.py -m gen_test/utils/send_7.py \
@@ -67,4 +68,10 @@ sudo python gen_test/test_8.py -m gen_test/utils/send_7.py \
 
 ```bash
 sudo python gen_test/test_9.py -m gen_test/utils/send_7.py -b gen_test/utils/benign_udp.py
+```
+
+### Test Case 10
+
+```bash
+sudo python gen_test/test_10.py -f gen_test/utils/send_7.py
 ```

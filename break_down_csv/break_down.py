@@ -4,7 +4,7 @@ import os
 
 packet_set = []
 
-which = "5-3"
+which = "1-3"
 filename = f"../test_data/csv/test_{which}.csv"
 with open(filename) as csvfile:
     rows = csv.reader(csvfile)

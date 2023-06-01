@@ -4,6 +4,7 @@ import os
 import matplotlib.pyplot as plt
 
 INF = 1 << 64
+
 testcase = "9-5"
 os.system(f"mkdir {testcase}")
 result = []

@@ -24,7 +24,8 @@ for part in range(182):
 
     packet_set = packet_set[1:]
     packet_set.sort(key=lambda packet_set:float(packet_set[1]))
-    rate = float(packet_set[-1][1]) / len(packet_set)
+    #rate = float(packet_set[-1][1]) / len(packet_set)
+    rate = 0.1 / len(packet_set)
 
     """
     cluster : [src_min, src_max, dst_min, dst_max]

@@ -5,10 +5,10 @@ import matplotlib.pyplot as plt
 
 INF = 1 << 64
 
-testcase = "1-3"
+testcase = "9-1"
 os.system(f"mkdir {testcase}")
 result = []
-for part in range(182):
+for part in range(4):
     print(part)
     filename = f"./break_down_data/break_down_{testcase}_{part}.csv"
 
@@ -26,7 +26,7 @@ for part in range(182):
     packet_set = packet_set[1:]
     packet_set.sort(key=lambda packet_set:float(packet_set[1]))
     #rate = float(packet_set[-1][1]) / len(packet_set)
-    rate = 0.1 / len(packet_set)
+    rate = 4 / len(packet_set)
 
     """
     cluster : [src_min, src_max, dst_min, dst_max]
@@ -172,7 +172,7 @@ for part in range(182):
         length.append(len(packet_queue_set[i]))
         print(f"{i}:", length[i])
 
-    current_time = part * 0.1
+    current_time = part * 4
     print("rate:", rate)
     while True:
         empty = 0
@@ -180,7 +180,7 @@ for part in range(182):
         for i in range(4):
             if length[i] > 0:
                 out = packet_queue_set[i].pop(0)
-                out[1] = str(round(current_time + rate / 4 * i, 6))
+                out[1] = str(round(current_time, 6))
                 result.append(out[1:])
                 length[i] -= 1
             else:

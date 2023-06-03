@@ -18,7 +18,7 @@ def run(dest, port, length, period):
         ip = random.choice(dest)
         s.sendto(data, (ip, port))
         total += 1
-        sleep(random.uniform(0.01, 0.03))
+        sleep(random.uniform(0.002, 0.005))
     s.close()
     print(f"Sending {total} packets to destination [{' ,'.join(dest)}]")
     

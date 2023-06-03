@@ -4,7 +4,7 @@ import os
 
 packet_set = []
 
-which = "1-3"
+which = "9-1"
 filename = f"../test_data/csv/test_{which}.csv"
 with open(filename) as csvfile:
     rows = csv.reader(csvfile)
@@ -19,7 +19,7 @@ os.system("mkdir break_down_data")
 cur_time = 0
 counter = 0
 while True:
-    cur_time += 0.1
+    cur_time += 4
     buf = []
     while True:
         if len(packet_set) != 0 and float(packet_set[0][1]) <= cur_time:

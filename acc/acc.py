@@ -3,9 +3,9 @@ import pandas as pd
 import os
 
 INF = 1 << 64
-testcase  = 8
-#filename = f"../data/{testcase}.csv"
-filename = "../test-data/test.csv"
+testcase  = "9-1"
+filename = f"../test_data/csv/test_{testcase}.csv"
+#filename = "../test-data/test.csv"
 
 packet_set = []
 with open(filename) as csvfile:
@@ -125,4 +125,4 @@ while True:
 
 df = pd.DataFrame(result)
 df.to_csv(f"after_acc_{testcase}.csv")
-os.system(f"python3 graph.py {testcase}")
+#os.system(f"python3 graph.py {testcase}")
